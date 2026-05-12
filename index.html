@@ -36,6 +36,16 @@ https://templatemo.com/tm-612-parallax-starter
                 <li><a href="#gallery">GALLERY</a></li>
                 <li><a href="#contact">CONTACT</a></li>
                 <li><a href="login/index.html" class="nav-cta">LOGIN</a></li>
+
+                <!-- USER INFO -->
+                <li>
+                    <p id="userInfo">Belum login</p>
+                </li>
+
+                <!-- AUTH AREA -->
+                <li id="authArea">
+                    <button onclick="goLogin()" class="nav-cta">LOGIN</button>
+                </li>
             </ul>
         </div>
     </nav>
@@ -171,10 +181,18 @@ https://templatemo.com/tm-612-parallax-starter
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="templatemo-footer">
-        <p>Copyright &copy; 2026 Your Company. Designed by <a href="https://templatemo.com" rel="nofollow" target="_blank">TemplateMo</a></p>
-    </footer>
-    <script src="templatemo-parallax-script.js"></script>
+       <!-- SCRIPT LOGIN USER -->
+        <script src="login/js/welcome.js"></script>
+
+        <!-- FUNCTION LOGIN BUTTON -->
+        <script>
+        function goLogin() {
+            window.location.href = "login/index.html";
+        }
+        </script>
+
+        <!-- TEMPLATE SCRIPT (parallax dll) -->
+        <script src="templatemo-parallax-script.js"></script>
+
 </body>
 </html>
