@@ -75,13 +75,12 @@
                 </div>
 
                 <!-- Sign In Button -->
-                    <a href="../index.html"
-                    onclick="login()"
-                    class="block w-full text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl hover:opacity-90 transition duration-200 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl">
-                    
-                        
+                    <button 
+                        type="button"
+                        onclick="login()"
+                        class="block w-full text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl hover:opacity-90 transition duration-200 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl">
                         Masuk
-                    </a>
+                    </button>
 
                 <!-- Divider -->
                 <div class="relative">
@@ -115,6 +114,18 @@
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
+    </script>
+    <script>
+    function login() {
+        const username = document.getElementById("username").value;
+        
+        if (!username) {
+            alert("Isi username dulu!");
+        return;
+    }
+        localStorage.setItem("username", username);
+        window.location.href = "../index.html";
+    }
     </script>
 </body>
 </html>
