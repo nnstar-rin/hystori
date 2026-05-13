@@ -20,8 +20,8 @@
         <!-- Login Card -->
         <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-2xl p-8 space-y-8 transition-all duration-500 hover:shadow-xl">
             <div class="text-center">
-                <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Welcome Back</h2>
-                <p class="text-gray-500 mt-2">Please sign in to continue</p>
+                <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Create Account</h2>
+                <p class="text-gray-500 mt-2">Please register to continue</p>
             </div>
 
             <form class="space-y-6">
@@ -77,9 +77,9 @@
                 <!-- Sign In Button -->
                     <button 
                         type="button"
-                        onclick="login()"
+                        onclick="register()"
                         class="block w-full text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl hover:opacity-90 transition duration-200 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl">
-                        Masuk
+                        Daftar
                     </button>
 
                 <!-- Divider -->
@@ -105,27 +105,32 @@
             <!-- Sign Up Link -->
             <p class="text-center text-sm text-gray-600">
                 Don't have an account? 
-                <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-200">Sign up</a>
+                <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-200">Daftar</a>
             </p>
         </div>
     </div>
+<script>
+function register() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-    <script>src="js/login.js"</script>
+    if (!username || !password) {
+        alert("Isi semua data dulu!");
+        return;
+    }
+
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", password);
+
+    alert("Pendaftaran berhasil!");
+
+    window.location.href = "login.html";
+}
+</script>
+    <script> src="js/register.js"></script>
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
-    </script>
-    <script>
-    function login() {
-        const username = document.getElementById("username").value;
-        
-        if (!username) {
-            alert("Isi username dulu!");
-        return;
-    }
-        localStorage.setItem("username", username);
-        window.location.href = "../index.html";
-    }
     </script>
 </body>
 </html>
