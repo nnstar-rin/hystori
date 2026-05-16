@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    <scriptsrc="js/login.js"></script>
+    <script src="js/login.js"></script>
     <script>
     function login() {
         const username = document.getElementById("username").value;
@@ -122,6 +122,26 @@
 
         } else {
             alert("Username atau password salah!");
+        }
+    }
+        
+    function forgotPassword() {
+
+        const email = prompt("Masukkan email kamu:");
+
+        const savedEmail = localStorage.getItem("email");
+
+        if (email === savedEmail) {
+
+            const newPassword = prompt("Masukkan password baru:");
+
+            localStorage.setItem("password", newPassword);
+
+            alert("Password berhasil diubah!");
+
+        } else {
+
+            alert("Email tidak cocok!");
         }
     }
     </script>
