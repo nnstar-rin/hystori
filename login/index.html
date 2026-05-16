@@ -97,21 +97,26 @@
         </div>
     </div>
 
-    <script>src="js/login.js"</script>
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-    </script>
+    <scriptsrc="js/login.js"></script>
     <script>
     function login() {
         const username = document.getElementById("username").value;
-        
-        if (!username) {
-            alert("Isi username dulu!");
-        return;
-    }
-        localStorage.setItem("username", username);
-        window.location.href = "../index.html";
+        const password = document.getElementById("password").value;
+
+        const savedUsername = localStorage.getItem("username");
+        const savedPassword = localStorage.getItem("password");
+
+        if (username === savedUsername && password === savedPassword) {
+
+            alert("Login berhasil!");
+
+            localStorage.setItem("isLogin", "true");
+
+            window.location.href = "../index.html";
+
+        } else {
+            alert("Username atau password salah!");
+        }
     }
     </script>
 </body>
