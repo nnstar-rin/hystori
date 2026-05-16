@@ -21,8 +21,8 @@
                 <p class="text-gray-500 mt-2">Please sign in to continue</p>
             </div>
 
-            <form class="space-y-6">
-                <!-- Email Input -->
+            <form id="loginForm" class="space-y-6">
+                <!-- Username Input -->
                 <div class="relative">
                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
                         Username
@@ -70,7 +70,7 @@
                     </div>
 
                     <button 
-                        type="button"
+                        type="submit"
                         onclick="forgotPassword()"
                         class="text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">
                         Forgot password?
@@ -104,61 +104,6 @@
     </div>
 
     <script src="js/login.js"></script>
-    <script>
-    function login() {
 
-        const username = document.getElementById("username").value.trim();
-        const password = document.getElementById("password").value.trim();
-
-        const savedUsername = localStorage.getItem("username");
-        const savedPassword = localStorage.getItem("password");
-
-        console.log("Input Password:", password);
-        console.log("Saved Password:", savedPassword);
-
-        if (username === savedUsername && password === savedPassword) {
-
-            alert("Login berhasil!");
-
-            localStorage.setItem("isLogin", "true");
-
-            window.location.href = "../index.html";
-
-        } else {
-
-            alert("Username atau password salah!");
-        }
-    }
-
-function forgotPassword() {
-
-    const email = prompt("Masukkan email kamu:");
-
-    const savedEmail = localStorage.getItem("email");
-
-    if (email && email.trim() === savedEmail) {
-
-        const newPassword = prompt("Masukkan password baru:");
-
-        // kalau pencet cancel atau kosong
-        if (!newPassword || newPassword.trim() === "") {
-
-            alert("Password tidak boleh kosong!");
-            return;
-        }
-
-        localStorage.setItem("password", newPassword.trim());
-
-        // cek isi password terbaru
-        console.log("Password baru:", localStorage.getItem("password"));
-
-        alert("Password berhasil diubah!");
-
-    } else {
-
-        alert("Email tidak cocok!");
-    }
-}
-    </script>
 </body>
 </html>
