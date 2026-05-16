@@ -21,7 +21,6 @@
                 <p class="text-gray-500 mt-2">Please register to continue</p>
             </div>
 
-            <form id="registerForm">
                 <!-- Username Input -->
                 <div class="relative">
                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
@@ -31,7 +30,7 @@
                         <i data-lucide="lock" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"></i>
                         <input 
                             class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50"
-                            type="teks" 
+                            type="username" 
                             id="username" 
                             placeholder="Enter your username"
                             required
@@ -76,9 +75,10 @@
                 <!-- Remember Me + Button -->
                 <div class="flex flex-col gap-4">
 
-                    <!-- Sign Up Button -->
+                    <!-- Sign In Button -->
                     <button 
-                        type="submit
+                        type="button"
+                        onclick="register()"
                         class="block w-full text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl hover:opacity-90 transition duration-200 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl">
                         Daftar
                     </button>
@@ -105,6 +105,26 @@
                 </div>
         </div>
     </div>
+<script>
+function register() {
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    if (!username || !email || !password) {
+        alert("Isi semua data dulu!");
+        return;
+    }
+
+    localStorage.setItem("username", username);
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
+
+    alert("Pendaftaran berhasil!");
+
+    window.location.href = "index.html";
+}
+</script>
     <script src="js/register.js"></script>
     <script>
         // Initialize Lucide icons
