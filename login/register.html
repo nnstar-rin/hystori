@@ -30,7 +30,7 @@
                         <i data-lucide="lock" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"></i>
                         <input 
                             class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50"
-                            type="username" 
+                            type="teks" 
                             id="username" 
                             placeholder="Enter your username"
                             required
@@ -107,11 +107,13 @@
     </div>
 <script>
 function register() {
-    const username = document.getElementById("username").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
     if (!username || !email || !password) {
+
         alert("Isi semua data dulu!");
         return;
     }
