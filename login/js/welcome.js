@@ -1,14 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    function goLogin() {
-        window.location.href = "login/index.html";
-    }
-
-    function logout() {
-        localStorage.removeItem("username");
-        location.reload();
-    }
-
     const user = localStorage.getItem("username");
 
     if (user) {
@@ -18,8 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
             <button onclick="logout()" class="nav-cta">LOGOUT</button>
         `;
     }
-
-    window.goLogin = goLogin;
-    window.logout = logout;
-
 });
+
+function logout() {
+    localStorage.removeItem("username");
+    localStorage.removeItem("isLogin");
+    location.reload();
+}
