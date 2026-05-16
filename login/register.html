@@ -21,7 +21,6 @@
                 <p class="text-gray-500 mt-2">Please register to continue</p>
             </div>
 
-            <form class="space-y-6">
                 <!-- Username Input -->
                 <div class="relative">
                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
@@ -102,7 +101,6 @@
                         <span class="px-4 bg-white/80 text-gray-500">Or continue with</span>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 <script>
@@ -111,7 +109,7 @@ function register() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    if (!username | !email | !password) {
+    if (!username || !email || !password) {
         alert("Isi semua data dulu!");
         return;
     }
@@ -122,10 +120,10 @@ function register() {
 
     alert("Pendaftaran berhasil!");
 
-    window.location.href = "login/index.html";
+    window.location.href = "index.html";
 }
 </script>
-    <script> src="js/register.js"></script>
+    <script src="js/register.js"></script>
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
