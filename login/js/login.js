@@ -1,5 +1,4 @@
 document.getElementById("loginForm").addEventListener("submit", function(e) {
-
     e.preventDefault();
 
     const username = document.getElementById("username").value.trim();
@@ -8,24 +7,24 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     const savedUsername = localStorage.getItem("username");
     const savedPassword = localStorage.getItem("password");
 
+    console.log("INPUT:", username, password);
+    console.log("SAVED:", savedUsername, savedPassword);
+
     if (username === savedUsername && password === savedPassword) {
 
         alert("Login berhasil!");
-
         localStorage.setItem("isLogin", "true");
-
         window.location.href = "../index.html";
 
     } else {
-
         alert("Username atau Password salah!");
     }
 });
 
+
 function forgotPassword() {
 
     const email = prompt("Masukkan email kamu:");
-
     const savedEmail = localStorage.getItem("email");
 
     if (email && email.trim() === savedEmail) {
@@ -33,7 +32,6 @@ function forgotPassword() {
         const newPassword = prompt("Masukkan password baru:");
 
         if (!newPassword || newPassword.trim() === "") {
-
             alert("Password tidak boleh kosong!");
             return;
         }
@@ -42,8 +40,10 @@ function forgotPassword() {
 
         alert("Password berhasil diubah!");
 
-    } else {
+        // 🔥 penting biar gak error cache
+        location.reload();
 
+    } else {
         alert("Email tidak cocok!");
     }
 }
