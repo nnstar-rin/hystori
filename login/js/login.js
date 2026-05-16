@@ -10,22 +10,42 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
-            body: `action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+            body: new URLSearchParams({
+                action: "login",
+                username: username,
+                password: password
+            })
         });
 
-        const data = await res.json();
-        console.log(data);
+        // 🔥 cek kalau server error
+        if (!res.ok) {
+            throw new Error("HTTP Error: " + res.status);
+        }
+
+        const text = await res.text();
+        console.log("RAW RESPONSE:", text);
+
+        let data;
+        try {
+            data = JSON.parse(text);
+        } catch (err) {
+            throw new Error("Response bukan JSON valid!");
+        }
+
+        console.log("PARSED DATA:", data);
 
         if (data.status === "success") {
             localStorage.setItem("username", data.username);
             localStorage.setItem("isLogin", "true");
+
+            // ⚠️ pastikan path ini benar
             window.location.href = "../index.html";
         } else {
-            alert("Username atau password salah!");
+            alert(data.message || "Username atau password salah!");
         }
 
     } catch (err) {
-        alert("Server error!");
         console.error(err);
+        alert("Login gagal / server error!");
     }
 });
