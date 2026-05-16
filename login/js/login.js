@@ -4,48 +4,33 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    try {
-        const res = await fetch("https://herisusanta.my.id/javalogin/api/auth.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: new URLSearchParams({
-                action: "login",
-                username: username,
-                password: password
-            })
-        });
+    const res = await fetch("https://herisusanta.my.id/javalogin/api/auth.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+    });
 
-        // 🔥 cek kalau server error
-        if (!res.ok) {
-            throw new Error("HTTP Error: " + res.status);
-        }
+    const data = await res.json();
 
-        const text = await res.text();
-        console.log("RAW RESPONSE:", text);
-
-        let data;
-        try {
-            data = JSON.parse(text);
-        } catch (err) {
-            throw new Error("Response bukan JSON valid!");
-        }
-
-        console.log("PARSED DATA:", data);
-
-        if (data.status === "success") {
+    if (data.status === "success") {
+        // simpan username
             localStorage.setItem("username", data.username);
-            localStorage.setItem("isLogin", "true");
-
-            // ⚠️ pastikan path ini benar
             window.location.href = "../index.html";
-        } else {
-            alert(data.message || "Username atau password salah!");
-        }
+         
+    // } else {
+    //     document.getElementById("message").innerText = "Username / Password salah";alert("Login gagal");
+    // }
+    
+    } else {
+    const alertBox = document.getElementById("alertBox");
+    alertBox.innerText = "Username atau Password salah, silahkan coba lagi";
+    alertBox.style.display = "block";
 
-    } catch (err) {
-        console.error(err);
-        alert("Login gagal / server error!");
-    }
+    setTimeout(() => {
+        alertBox.style.display = "none";
+    }, 3000);
+} 
+   
 });
