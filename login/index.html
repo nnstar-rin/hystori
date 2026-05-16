@@ -21,8 +21,8 @@
                 <p class="text-gray-500 mt-2">Please sign in to continue</p>
             </div>
 
-            <form id="loginForm" class="space-y-6">
-                <!-- Username Input -->
+            <form class="space-y-6">
+                <!-- Email Input -->
                 <div class="relative">
                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
                         Username
@@ -31,7 +31,7 @@
                         <i data-lucide="mail" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"></i>
                         <input 
                             class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50"
-                            type="text" 
+                            type="username" 
                             id="username" 
                             placeholder="Enter your username"
                             required
@@ -70,8 +70,8 @@
                     </div>
 
                     <button 
-                        type="button" 
-                        onclick="forgotPassword()" 
+                        type="button"
+                        onclick="forgotPassword()"
                         class="text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">
                         Forgot password?
                     </button>
@@ -79,7 +79,8 @@
 
                 <!-- Sign In Button -->
                     <button 
-                        type="submit"
+                        type="button"
+                        onclick="login()"
                         class="block w-full text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl hover:opacity-90 transition duration-200 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl">
                         Masuk
                     </button>
@@ -103,6 +104,46 @@
     </div>
 
     <script src="js/login.js"></script>
+    <script>
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
 
+        const savedUsername = localStorage.getItem("username");
+        const savedPassword = localStorage.getItem("password");
+
+        if (username === savedUsername && password === savedPassword) {
+
+            alert("Login berhasil!");
+
+            localStorage.setItem("isLogin", "true");
+
+            window.location.href = "../index.html";
+
+        } else {
+            alert("Username atau password salah!");
+        }
+    }
+        
+    function forgotPassword() {
+
+        const email = prompt("Masukkan email kamu:");
+
+        const savedEmail = localStorage.getItem("email");
+
+        if (email === savedEmail) {
+
+            const newPassword = prompt("Masukkan password baru:");
+
+            localStorage.setItem("password", newPassword);
+
+            alert("Password berhasil diubah!");
+
+        } else {
+
+            alert("Email tidak cocok!");
+        }
+    }
+    </script>
 </body>
 </html>
