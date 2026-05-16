@@ -24,6 +24,6 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         window.location.href = "../index.html";
 
     } else {
-        alert("Username atau password salah!");
+        alert("Username / Password salah!");
     }
 });
