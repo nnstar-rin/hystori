@@ -130,28 +130,35 @@
         }
     }
 
-    function forgotPassword() {
+function forgotPassword() {
 
-        const email = prompt("Masukkan email kamu:");
+    const email = prompt("Masukkan email kamu:");
 
-        const savedEmail = localStorage.getItem("email");
+    const savedEmail = localStorage.getItem("email");
 
-        if (email && email.trim() === savedEmail) {
+    if (email && email.trim() === savedEmail) {
 
-            const newPassword = prompt("Masukkan password baru:");
+        const newPassword = prompt("Masukkan password baru:");
 
-            if (newPassword) {
+        // kalau pencet cancel atau kosong
+        if (!newPassword || newPassword.trim() === "") {
 
-                localStorage.setItem("password", newPassword.trim());
-
-                alert("Password berhasil diubah!");
-            }
-
-        } else {
-
-            alert("Email tidak cocok!");
+            alert("Password tidak boleh kosong!");
+            return;
         }
+
+        localStorage.setItem("password", newPassword.trim());
+
+        // cek isi password terbaru
+        console.log("Password baru:", localStorage.getItem("password"));
+
+        alert("Password berhasil diubah!");
+
+    } else {
+
+        alert("Email tidak cocok!");
     }
+}
     </script>
 </body>
 </html>
