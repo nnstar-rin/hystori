@@ -34,3 +34,13 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 } 
    
 });
+
+function forgotPassword() {
+    const username = prompt("Masukkan username kamu:");
+
+    if (!username) {
+        return;
+    }
+
+    alert("Link reset password telah dikirim untuk akun: " + username);
+}
