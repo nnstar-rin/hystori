@@ -21,7 +21,7 @@
                 <p class="text-gray-500 mt-2">Please sign in to continue</p>
             </div>
 
-            <form class="space-y-6">
+            <form id="loginForm" class="space-y-6">
                 <!-- Email Input -->
                 <div class="relative">
                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
@@ -79,11 +79,12 @@
 
                 <!-- Sign In Button -->
                     <button 
-                        type="button"
-                        onclick="login()"
+                        type="submit"
                         class="block w-full text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl hover:opacity-90 transition duration-200 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl">
                         Masuk
                     </button>
+                
+                <p id="alertBox" class="text-red-500 text-center text-sm hidden"></p>
 
                 <!-- Divider -->
                 <div class="relative">
@@ -102,23 +103,6 @@
             </p>
         </div>
     </div>
-    <form id="loginForm">
-        <h3>Silahkan Login</h3>
-        <label for="username">Nama Pengguna</label>
-        <input type="text" id="username" placeholder="Nama Pengguna .." required="required">
-
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Password .." required="required">
-        <!--<p id="message"></p> -->
-        <button type="submit" >masuk</button>
-
-        <div class="social">
-            <div class="go"> <a href="register.html">Daftar </a></div>
-            <div class="kanan"><i class="fab fa-google"></i> Google</div>
-        </div>
-        <button onclick="location.href='../index.html';">Home</button>
-        <div id="alertBox" class="alert" style="display:none;"></div>
-    </form>
     <script src="js/login.js"></script>
 </body>
 </html>
