@@ -21,6 +21,7 @@
                 <p class="text-gray-500 mt-2">Please register to continue</p>
             </div>
 
+            <form id="registerForm" class="space-y-6">
                 <!-- Username Input -->
                 <div class="relative">
                     <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
@@ -75,7 +76,7 @@
                 <!-- Remember Me + Button -->
                 <div class="flex flex-col gap-4">
 
-                    <!-- Sign In Button -->
+                    <!-- Sign UP Button -->
                     <button 
                         type="button"
                         onclick="register()"
@@ -94,9 +95,9 @@
                         Remember me
                     </label>
                 </div>
-
             </div>
-
+                <p id="message" class="text-center text-sm text-red-500"></p>
+          </form>
                 <!-- Divider -->
                 <div class="relative">
                     <div class="absolute inset-0 flex items-center">
@@ -105,26 +106,6 @@
                 </div>
         </div>
     </div>
-<script>
-function register() {
-    const username = document.getElementById("username").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    if (!username || !email || !password) {
-        alert("Isi semua data dulu!");
-        return;
-    }
-
-    localStorage.setItem("username", username);
-    localStorage.setItem("email", email);
-    localStorage.setItem("password", password);
-
-    alert("Pendaftaran berhasil!");
-
-    window.location.href = "index.html";
-}
-</script>
     <script src="js/register.js"></script>
     <script>
         // Initialize Lucide icons
