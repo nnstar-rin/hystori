@@ -18,11 +18,31 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const resetUser = localStorage.getItem("resetUser");
     const resetPass = localStorage.getItem("resetPass");
 
-    // login berhasil dari API ATAU password reset lokal
-    if (
-        (data.status === "success") ||
-        (username === resetUser && password === resetPass)
-    ) {
+    // kalau user pernah reset password
+    if (username === resetUser) {
+
+        // cek password baru
+        if (password === resetPass) {
+
+            localStorage.setItem("username", username);
+
+            window.location.href = "../index.html";
+
+        } else {
+
+            const alertBox = document.getElementById("alertBox");
+
+            alertBox.innerText = "Password baru salah";
+
+            alertBox.style.display = "block";
+
+            setTimeout(() => {
+                alertBox.style.display = "none";
+            }, 3000);
+        }
+
+    // kalau belum pernah reset password
+    } else if (data.status === "success") {
 
         localStorage.setItem("username", username);
 
@@ -32,7 +52,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         const alertBox = document.getElementById("alertBox");
 
-        alertBox.innerText = "Username atau Password salah, silahkan coba lagi";
+        alertBox.innerText = "Username atau Password salah";
 
         alertBox.style.display = "block";
 
