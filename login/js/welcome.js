@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+ddocument.addEventListener("DOMContentLoaded", function () {
 
     function goLogin() {
         window.location.href = "login/index.html";
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("userInfo").innerText = "Halo, " + user;
 
         document.getElementById("authArea").innerHTML = `
-            <button onclick="logout()" class="nav-cta">LOGOUT</button>
+            <button onclick="logout()" class="nav-cta">Logout</button>
         `;
     }
 
@@ -23,3 +23,4 @@ document.addEventListener("DOMContentLoaded", function () {
     window.logout = logout;
 
 });
+
