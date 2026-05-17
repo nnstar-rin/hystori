@@ -102,48 +102,10 @@
             </p>
         </div>
     </div>
+    <div id="alertBox" class="alert" style="display:none;"></div>
 
     <script src="js/login.js"></script>
-    <script>
-    function login() {
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
+    
 
-        const savedUsername = localStorage.getItem("username");
-        const savedPassword = localStorage.getItem("password");
-
-        if (username === savedUsername && password === savedPassword) {
-
-            alert("Login berhasil!");
-
-            localStorage.setItem("isLogin", "true");
-
-            window.location.href = "../index.html";
-
-        } else {
-            alert("Username atau password salah!");
-        }
-    }
-        
-    function forgotPassword() {
-
-        const email = prompt("Masukkan email kamu:");
-
-        const savedEmail = localStorage.getItem("email");
-
-        if (email === savedEmail) {
-
-            const newPassword = prompt("Masukkan password baru:");
-
-            localStorage.setItem("password", newPassword);
-
-            alert("Password berhasil diubah!");
-
-        } else {
-
-            alert("Email tidak cocok!");
-        }
-    }
-    </script>
 </body>
 </html>
