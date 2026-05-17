@@ -14,33 +14,48 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
     const data = await res.json();
 
-    if (data.status === "success") {
-        // simpan username
-            localStorage.setItem("username", data.username);
-            window.location.href = "../index.html";
-         
-    // } else {
-    //     document.getElementById("message").innerText = "Username / Password salah";alert("Login gagal");
-    // }
-    
-    } else {
-    const alertBox = document.getElementById("alertBox");
-    alertBox.innerText = "Username atau Password salah, silahkan coba lagi";
-    alertBox.style.display = "block";
+    // ambil data reset password lokal
+    const resetUser = localStorage.getItem("resetUser");
+    const resetPass = localStorage.getItem("resetPass");
 
-    setTimeout(() => {
-        alertBox.style.display = "none";
-    }, 3000);
-} 
-   
+    // login berhasil dari API ATAU password reset lokal
+    if (
+        (data.status === "success") ||
+        (username === resetUser && password === resetPass)
+    ) {
+
+        localStorage.setItem("username", username);
+
+        window.location.href = "../index.html";
+
+    } else {
+
+        const alertBox = document.getElementById("alertBox");
+
+        alertBox.innerText = "Username atau Password salah, silahkan coba lagi";
+
+        alertBox.style.display = "block";
+
+        setTimeout(() => {
+            alertBox.style.display = "none";
+        }, 3000);
+    }
 });
 
+
+// FORGOT PASSWORD
 function forgotPassword() {
-    const username = prompt("Masukkan username kamu:");
 
-    if (!username) {
-        return;
-    }
+    const username = prompt("Masukkan username:");
 
-    alert("Link reset password telah dikirim untuk akun: " + username);
+    if (!username) return;
+
+    const newPassword = prompt("Masukkan password baru:");
+
+    if (!newPassword) return;
+
+    localStorage.setItem("resetUser", username);
+    localStorage.setItem("resetPass", newPassword);
+
+    alert("Password berhasil diubah!");
 }
