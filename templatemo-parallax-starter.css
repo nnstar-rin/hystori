@@ -1,8 +1,8 @@
 /* ==========================================================================
-   PARALLAX STATER - RASA DAN CERITA (FULL FINAL FIXED)
+   Parallax Starter - MODIFIED (RASA DAN CERITA)
    ========================================================================== */
 
-/* --- VARIABLES --- */
+/* --- CSS Variables --- */
 :root {
     --font-heading: 'Oswald', sans-serif;
     --font-body: 'Source Sans 3', sans-serif;
@@ -17,10 +17,10 @@
     --nav-bg: rgba(0, 0, 0, 0.25);
     --nav-bg-scrolled: rgba(0, 0, 0, 0.85);
 
-    --transition: 0.3s ease;
+    --transition-smooth: 0.3s ease;
 }
 
-/* --- RESET --- */
+/* --- Reset --- */
 *,
 *::before,
 *::after {
@@ -35,6 +35,7 @@ html {
 
 body {
     font-family: var(--font-body);
+    font-weight: 300;
     color: var(--white);
     line-height: 1.7;
     overflow-x: hidden;
@@ -50,17 +51,16 @@ img {
     display: block;
 }
 
-/* =========================
-   NAVIGATION
-========================= */
+/* --- NAV --- */
 #templatemo-nav {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     z-index: 1000;
     background: var(--nav-bg);
     backdrop-filter: blur(8px);
-    transition: var(--transition);
+    transition: background var(--transition-smooth);
 }
 
 #templatemo-nav.scrolled {
@@ -69,32 +69,33 @@ img {
 
 .nav-container {
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
     padding: 0 30px;
-    height: 70px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    height: 70px;
 }
 
 .nav-logo {
     font-family: var(--font-heading);
     font-size: 22px;
     letter-spacing: 4px;
+    color: var(--white);
 }
 
 .nav-links {
+    list-style: none;
     display: flex;
     gap: 35px;
-    list-style: none;
 }
 
 .nav-links a {
     font-family: var(--font-heading);
     font-size: 13px;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     color: var(--white-70);
-    transition: var(--transition);
+    transition: var(--transition-smooth);
 }
 
 .nav-links a:hover,
@@ -102,15 +103,29 @@ img {
     color: var(--white);
 }
 
-/* =========================
-   PARALLAX
-========================= */
+/* --- MOBILE NAV --- */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+}
+
+/* --- PARALLAX --- */
 .parallax-section {
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     overflow: hidden;
 }
 
@@ -122,19 +137,18 @@ img {
     height: 200%;
     background-size: cover;
     background-position: center;
+    will-change: transform;
     z-index: 0;
 }
 
 .parallax-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
     z-index: 1;
 }
 
-/* =========================
-   CONTENT
-========================= */
+/* --- CONTENT --- */
 .section-content {
     position: relative;
     z-index: 2;
@@ -161,9 +175,7 @@ img {
     text-transform: uppercase;
 }
 
-/* =========================
-   RECIPE GRID
-========================= */
+/* --- RECIPE GRID --- */
 .recipe-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -177,7 +189,7 @@ img {
     padding: 20px;
     border-radius: 12px;
     text-align: left;
-    transition: var(--transition);
+    transition: 0.3s ease;
 }
 
 .recipe-card:hover {
@@ -188,16 +200,18 @@ img {
 .card-label {
     display: inline-block;
     font-size: 11px;
+    letter-spacing: 2px;
     padding: 5px 10px;
+    margin-bottom: 10px;
     border: 1px solid rgba(255,255,255,0.3);
     color: var(--white-70);
-    margin-bottom: 10px;
 }
 
 .recipe-card h3 {
     font-family: var(--font-heading);
     font-size: 18px;
     margin-bottom: 8px;
+    letter-spacing: 2px;
 }
 
 .recipe-card p {
@@ -206,13 +220,15 @@ img {
     margin-bottom: 12px;
 }
 
+/* BUTTON */
 .recipe-btn {
     padding: 10px 20px;
     border: 1px solid white;
     background: transparent;
     color: white;
     cursor: pointer;
-    transition: var(--transition);
+    letter-spacing: 2px;
+    transition: 0.3s;
 }
 
 .recipe-btn:hover {
@@ -220,68 +236,7 @@ img {
     color: black;
 }
 
-/* =========================
-   MODAL (FIX IMPORTANT)
-========================= */
-.modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition);
-    z-index: 9999;
-}
-
-.modal.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-box {
-    background: rgba(0,0,0,0.92);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 25px;
-    width: 90%;
-    max-width: 500px;
-    border-radius: 12px;
-    font-family: var(--font-body);
-    color: var(--white);
-    position: relative;
-}
-
-.modal-box h2 {
-    font-family: var(--font-heading);
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-}
-
-.modal-box h3 {
-    margin-top: 10px;
-}
-
-.modal-box ul {
-    margin-left: 20px;
-    margin-bottom: 10px;
-}
-
-.modal-close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-/* =========================
-   ABOUT / SERVICES / STATS
-========================= */
+/* --- ABOUT --- */
 .about-cols {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -294,38 +249,40 @@ img {
     border: 1px solid rgba(255,255,255,0.15);
 }
 
+/* --- SERVICES --- */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
 }
 
+/* --- STATS --- */
 .stats-row {
     display: flex;
     justify-content: center;
     gap: 70px;
 }
 
-/* =========================
-   CONTACT
-========================= */
+/* --- CONTACT --- */
 .contact-form {
     display: flex;
     flex-direction: column;
     gap: 18px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* --- RESPONSIVE --- */
 @media (max-width: 991px) {
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
     .recipe-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .stats-row {
+        gap: 40px;
     }
 }
 
