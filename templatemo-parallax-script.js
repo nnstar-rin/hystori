@@ -1,227 +1,192 @@
+/* ==========================================================================
+   Parallax Starter - Free HTML CSS Template
+
+TemplateMo 612 Parallax Starter
+
+https://templatemo.com/tm-612-parallax-starter
+
+   ========================================================================== */
+
 (function () {
-'use strict';
+    'use strict';
 
-// NAV
-var nav = document.getElementById('templatemo-nav');
-var navToggle = document.getElementById('navToggle');
-var navLinks = document.getElementById('navLinks');
+    // --- Elements ---
+    var nav = document.getElementById('templatemo-nav');
+    var navToggle = document.getElementById('navToggle');
+    var navLinks = document.getElementById('navLinks');
+    var navItems = document.querySelectorAll('.nav-links a');
+    var sections = document.querySelectorAll('.parallax-section');
+    var parallaxBgs = document.querySelectorAll('.parallax-bg');
+    var revealElements = document.querySelectorAll('.section-content');
 
-window.addEventListener('scroll', function () {
-    if (window.scrollY > 80) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-});
+    // --- Detect mobile ---
+    var isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+                   || window.innerWidth <= 768;
 
-navToggle.addEventListener('click', function () {
-    navToggle.classList.toggle('active');
-    navLinks.classList.toggle('open');
-});
+    // =============================================
+    // Smooth Parallax Engine
+    // =============================================
+    // How it works:
+    // - Each .parallax-bg is 200% the height of the viewport
+    //   and offset by -50% so there's plenty of image above
+    //   and below to translate into.
+    // - As the user scrolls, we calculate how far the section
+    //   midpoint is from the viewport center (a value from -1 to +1).
+    // - We multiply that by a large pixel range (half the viewport height)
+    //   so the background shifts dramatically relative to the content.
+    // - data-speed controls intensity: 0.5 = half viewport travel range.
 
-// =====================
-// RECIPE DATA (FIXED KEY)
-// =====================
-var recipes = {
+    var ticking = false;
 
-ayam: {
-title: "Ayam Geprek",
-img: "images/ayam-geprek.jpg",
-body: `
-<h3>🍗 Bahan:</h3>
-<ul>
-<li>1 ekor ayam (potong sesuai selera)</li>
-<li>3 sdm tepung terigu</li>
-<li>2 sdm tepung maizena</li>
-<li>1 butir telur</li>
-<li>Garam & merica secukupnya</li>
-<li>Minyak untuk menggoreng</li>
-</ul>
+    function updateParallax() {
+        if (isMobile) return;
 
-<h3>🌶️ Sambal:</h3>
-<ul>
-<li>10 cabai rawit (sesuaikan pedas)</li>
-<li>3 siung bawang putih</li>
-<li>Garam secukupnya</li>
-</ul>
+        var scrollTop = window.pageYOffset;
+        var windowHeight = window.innerHeight;
 
-<h3>🔥 Cara Membuat:</h3>
-<ul>
-<li>Baluri ayam dengan garam, merica, dan telur</li>
-<li>Campur tepung terigu + maizena</li>
-<li>Goreng ayam sampai crispy dan matang</li>
-<li>Ulek cabai + bawang + garam sampai halus</li>
-<li>Geprek ayam di atas sambal</li>
-<li>Sajikan dengan nasi hangat</li>
-</ul>
-`
-},
+        parallaxBgs.forEach(function (bg) {
+            var section = bg.parentElement;
+            var rect = section.getBoundingClientRect();
 
-seblak: {
-title: "Seblak Pedas Bandung",
-img: "images/seblak.jpg",
-body: `
-<h3>🍜 Bahan:</h3>
-<ul>
-<li>1 genggam kerupuk mentah</li>
-<li>2 butir telur</li>
-<li>2 sosis / bakso (opsional)</li>
-<li>2 siung bawang putih</li>
-<li>3–5 cabai rawit</li>
-<li>1 ruas kencur</li>
-<li>Garam, gula, kaldu bubuk</li>
-</ul>
+            // Skip sections far outside viewport
+            if (rect.bottom < -300 || rect.top > windowHeight + 300) {
+                return;
+            }
 
-<h3>🔥 Cara Membuat:</h3>
-<ul>
-<li>Rendam kerupuk sampai agak lembek</li>
-<li>Haluskan bawang, cabai, dan kencur</li>
-<li>Tumis bumbu sampai harum</li>
-<li>Masukkan telur lalu orak-arik</li>
-<li>Tambahkan air dan kerupuk</li>
-<li>Masukkan sosis/bakso</li>
-<li>Masak sampai bumbu meresap</li>
-</ul>
-`
-},
+            var speed = parseFloat(bg.getAttribute('data-speed')) || 0.5;
 
-nasgor: {
-title: "Nasi Goreng Rumahan",
-img: "images/nasgor.jpg",
-body: `
-<h3>🍚 Bahan:</h3>
-<ul>
-<li>1 piring nasi putih (lebih enak nasi dingin)</li>
-<li>2 siung bawang putih</li>
-<li>1 butir telur</li>
-<li>2 sdm kecap manis</li>
-<li>Garam & merica</li>
-<li>Minyak goreng</li>
-</ul>
+            // How far is the section center from the viewport center?
+            // sectionCenterY: vertical center of the section in viewport coords
+            var sectionCenterY = rect.top + rect.height / 2;
+            var viewportCenterY = windowHeight / 2;
 
-<h3>🔥 Cara Membuat:</h3>
-<ul>
-<li>Tumis bawang putih sampai harum</li>
-<li>Masukkan telur, orak-arik</li>
-<li>Masukkan nasi putih</li>
-<li>Tambahkan kecap, garam, dan merica</li>
-<li>Aduk sampai semua tercampur rata</li>
-<li>Sajikan dengan kerupuk atau ayam goreng</li>
-</ul>
-`
-},
+            // offset: negative when section center is above viewport center (scrolled past)
+            //         positive when section center is below viewport center (not yet reached)
+            var offset = sectionCenterY - viewportCenterY;
 
-tiramisu: {
-title: "Tiramisu Dessert",
-img: "images/tiramisu.jpg",
-body: `
-<h3>🍰 Bahan:</h3>
-<ul>
-<li>200 ml whipping cream</li>
-<li>200 gr cream cheese / mascarpone</li>
-<li>2–3 sdm gula halus</li>
-<li>1 pack ladyfinger / biskuit</li>
-<li>200 ml kopi hitam (dingin)</li>
-<li>Cocoa powder</li>
-</ul>
+            // Normalize to a -1 to +1 range based on how far through the viewport
+            // the section has traveled. Using windowHeight + section height as the
+            // total travel distance ensures full range coverage.
+            var totalTravel = windowHeight + rect.height;
+            var normalized = offset / (totalTravel / 2); // -1 to +1
 
-<h3>✨ Cara Membuat:</h3>
-<ul>
-<li>Kocok whipping cream sampai mengembang</li>
-<li>Campur dengan cream cheese + gula</li>
-<li>Celupkan biskuit ke kopi sebentar saja</li>
-<li>Susun layer: biskuit → cream → ulangi</li>
-<li>Lapisan paling atas taburi cocoa powder</li>
-<li>Dinginkan minimal 3–4 jam di kulkas</li>
-</ul>
-`
-},
+            // Clamp
+            normalized = Math.max(-1, Math.min(1, normalized));
 
-pancake: {
-title: "Fluffy Pancake",
-img: "images/pancake.jpg",
-body: `
-<h3>🥞 Bahan:</h3>
-<ul>
-<li>100 gr tepung terigu</li>
-<li>1 butir telur</li>
-<li>150 ml susu cair</li>
-<li>1 sdm gula</li>
-<li>1 sdt baking powder</li>
-<li>Mentega secukupnya</li>
-</ul>
+            // The maximum pixel displacement — large value for visible effect
+            // speed=0.5 means the bg can travel up to 50% of the viewport height
+            var maxShift = windowHeight * speed;
 
-<h3>🔥 Cara Membuat:</h3>
-<ul>
-<li>Campur semua bahan sampai halus</li>
-<li>Panaskan teflon dengan sedikit mentega</li>
-<li>Tuang adonan kecil-kecil</li>
-<li>Masak sampai muncul gelembung</li>
-<li>Balik dan masak sampai matang</li>
-<li>Sajikan dengan madu atau coklat</li>
-</ul>
-`
-},
+            // Apply translation — bg moves in the SAME direction as the offset
+            // which means it moves SLOWER than the scroll (parallax lag)
+            var translateY = normalized * maxShift;
 
-dalgona: {
-title: "Dalgona Coffee",
-img: "images/dalgona.jpg",
-body: `
-<h3>☕ Bahan:</h3>
-<ul>
-<li>2 sdm kopi instan</li>
-<li>2 sdm gula pasir</li>
-<li>2 sdm air panas</li>
-<li>200 ml susu dingin</li>
-</ul>
+            bg.style.transform = 'translate3d(0,' + translateY.toFixed(1) + 'px,0)';
+        });
 
-<h3>🔥 Cara Membuat:</h3>
-<ul>
-<li>Kocok kopi + gula + air panas sampai kental</li>
-<li>Siapkan gelas berisi susu dingin</li>
-<li>Tuang foam kopi di atas susu</li>
-<li>Aduk sebelum diminum</li>
-</ul>
-`
-}
+        ticking = false;
+    }
 
-};
+    function onScroll() {
+        if (!ticking) {
+            window.requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }
 
-// =====================
-// MODAL
-// =====================
-var modal = document.createElement('div');
-modal.className = "modal";
-modal.innerHTML = `
-<div class="modal-box">
-<button class="modal-close">×</button>
-<h2 id="m-title"></h2>
-<img id="m-img" style="width:100%;border-radius:8px;margin:10px 0;">
-<div id="m-body"></div>
-</div>
-`;
-document.body.appendChild(modal);
+    if (!isMobile) {
+        window.addEventListener('scroll', onScroll, { passive: true });
+        updateParallax();
+    }
 
-var titleEl = document.getElementById('m-title');
-var imgEl = document.getElementById('m-img');
-var bodyEl = document.getElementById('m-body');
+    // Recalculate on resize
+    window.addEventListener('resize', function () {
+        isMobile = window.innerWidth <= 768;
+        if (!isMobile) {
+            updateParallax();
+        } else {
+            parallaxBgs.forEach(function (bg) {
+                bg.style.transform = 'translate3d(0,0,0)';
+            });
+        }
+    });
 
-modal.querySelector('.modal-close').onclick = closeModal;
-modal.onclick = function (e) {
-if (e.target === modal) closeModal();
-};
+    // --- Navigation Scroll Effect ---
+    function handleNavScroll() {
+        if (window.scrollY > 80) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    }
 
-function closeModal() {
-modal.classList.remove('show');
-}
+    window.addEventListener('scroll', handleNavScroll, { passive: true });
+    handleNavScroll();
 
-// GLOBAL FUNCTION
-window.openRecipe = function (key) {
-var data = recipes[key];
-if (!data) return;
+    // --- Mobile Toggle ---
+    navToggle.addEventListener('click', function () {
+        navToggle.classList.toggle('active');
+        navLinks.classList.toggle('open');
+    });
 
-titleEl.innerHTML = data.title;
-imgEl.src = data.img;
-bodyEl.innerHTML = data.body;
+    navItems.forEach(function (link) {
+        link.addEventListener('click', function () {
+            navToggle.classList.remove('active');
+            navLinks.classList.remove('open');
+        });
+    });
 
-modal.classList.add('show');
-};
+    // --- Active Link on Scroll ---
+    function updateActiveLink() {
+        var scrollPos = window.scrollY + window.innerHeight / 3;
+
+        sections.forEach(function (section) {
+            var top = section.offsetTop;
+            var height = section.offsetHeight;
+            var id = section.getAttribute('id');
+
+            if (scrollPos >= top && scrollPos < top + height) {
+                navItems.forEach(function (link) {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + id) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveLink, { passive: true });
+    updateActiveLink();
+
+    // --- Scroll Reveal ---
+    revealElements.forEach(function (el) {
+        el.classList.add('reveal');
+    });
+
+    function checkReveal() {
+        var windowHeight = window.innerHeight;
+        var revealPoint = 120;
+
+        revealElements.forEach(function (el) {
+            var elementTop = el.getBoundingClientRect().top;
+            if (elementTop < windowHeight - revealPoint) {
+                el.classList.add('visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkReveal, { passive: true });
+    checkReveal();
+
+    // --- Contact Form ---
+    var contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+    }
 
 })();
