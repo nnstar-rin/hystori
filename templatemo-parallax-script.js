@@ -190,3 +190,170 @@ https://templatemo.com/tm-612-parallax-starter
     }
 
 })();
+
+function openRecipe(type) {
+    const modal = document.getElementById("recipeModal");
+    const title = document.getElementById("recipeTitle");
+    const content = document.getElementById("recipeContent");
+
+    let data = {
+        geprek: {
+            title: "🍗 Ayam Geprek Pedas",
+            content: `
+                <p>🔥 <b>Bahan:</b></p>
+                <ul>
+                    <li>1 potong ayam</li>
+                    <li>3 sdm tepung bumbu</li>
+                    <li>3 siung bawang putih</li>
+                    <li>Cabai rawit 🌶️</li>
+                    <li>Garam & lada</li>
+                </ul>
+
+                <p>👩‍🍳 <b>Cara membuat:</b></p>
+                <ol>
+                    <li>Marinasi ayam</li>
+                    <li>Balur tepung</li>
+                    <li>Goreng crispy 🍗</li>
+                    <li>Ulek cabai + bawang</li>
+                    <li>Geprek ayam di atas sambal 🔥</li>
+                </ol>
+
+                <p>💡 Nasi hangat = wajib!</p>
+            `
+        },
+
+        seblak: {
+            title: "🍜 Seblak Pedas Bandung",
+            content: `
+                <p>🔥 <b>Bahan:</b></p>
+                <ul>
+                    <li>Kerupuk</li>
+                    <li>2 telur 🥚</li>
+                    <li>Kencur</li>
+                    <li>Cabai 🌶️</li>
+                </ul>
+
+                <p>👩‍🍳 <b>Cara membuat:</b></p>
+                <ol>
+                    <li>Rendam kerupuk</li>
+                    <li>Haluskan bumbu</li>
+                    <li>Tumis sampai harum</li>
+                    <li>Masukkan telur</li>
+                    <li>Campur semua bahan</li>
+                </ol>
+
+                <p>💡 Kencur bikin khas!</p>
+            `
+        },
+
+        nasi: {
+            title: "🍛 Nasi Goreng Rumahan",
+            content: `
+                <p>🔥 <b>Bahan:</b></p>
+                <ul>
+                    <li>Nasi putih</li>
+                    <li>Telur 🥚</li>
+                    <li>Kecap manis</li>
+                    <li>Ayam / sosis</li>
+                </ul>
+
+                <p>👩‍🍳 <b>Cara membuat:</b></p>
+                <ol>
+                    <li>Tumis bawang</li>
+                    <li>Masukkan telur</li>
+                    <li>Masukkan ayam</li>
+                    <li>Masukkan nasi</li>
+                    <li>Tambahkan kecap 🍳</li>
+                </ol>
+
+                <p>💡 Pakai nasi dingin!</p>
+            `
+        },
+
+        tiramisu: {
+            title: "🍰 Tiramisu Dessert",
+            content: `
+                <p>🔥 <b>Bahan:</b></p>
+                <ul>
+                    <li>Biskuit</li>
+                    <li>Kopi ☕</li>
+                    <li>Whipped cream</li>
+                    <li>Keju</li>
+                </ul>
+
+                <p>👩‍🍳 <b>Cara membuat:</b></p>
+                <ol>
+                    <li>Celup biskuit</li>
+                    <li>Susun layer</li>
+                    <li>Tambah cream</li>
+                    <li>Ulangi</li>
+                    <li>Tabur coklat 🍫</li>
+                </ol>
+
+                <p>💡 Dinginkan dulu!</p>
+            `
+        },
+
+        pancake: {
+            title: "🥞 Pancake Lembut",
+            content: `
+                <p>🔥 <b>Bahan:</b></p>
+                <ul>
+                    <li>Tepung</li>
+                    <li>Telur 🥚</li>
+                    <li>Susu 🥛</li>
+                </ul>
+
+                <p>👩‍🍳 <b>Cara membuat:</b></p>
+                <ol>
+                    <li>Campur adonan</li>
+                    <li>Masak teflon</li>
+                    <li>Balik saat matang</li>
+                    <li>Tambahkan topping 🍯</li>
+                </ol>
+
+                <p>💡 Api kecil ya!</p>
+            `
+        },
+
+        dalgona: {
+            title: "☕ Dalgona Coffee",
+            content: `
+                <p>🔥 <b>Bahan:</b></p>
+                <ul>
+                    <li>Kopi instan</li>
+                    <li>Gula</li>
+                    <li>Air panas</li>
+                    <li>Susu 🥛</li>
+                </ul>
+
+                <p>👩‍🍳 <b>Cara membuat:</b></p>
+                <ol>
+                    <li>Kocok kopi + gula</li>
+                    <li>Sampai foam</li>
+                    <li>Tuang susu</li>
+                    <li>Taruh foam ☕</li>
+                </ol>
+
+                <p>💡 Semakin lama dikocok makin fluffy!</p>
+            `
+        }
+    };
+
+    title.innerHTML = data[type].title;
+    content.innerHTML = data[type].content;
+
+    modal.style.display = "flex";
+}
+
+function closeRecipe() {
+    document.getElementById("recipeModal").style.display = "none";
+}
+
+// klik luar modal untuk nutup
+window.addEventListener("click", function (e) {
+    const modal = document.getElementById("recipeModal");
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+});
