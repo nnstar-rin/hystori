@@ -243,7 +243,7 @@ img {
     font-size: 14px;
     color: var(--white-40);
     letter-spacing: 1px;
-    margin-top: auto;
+    margin-top: 0;
     padding-bottom: 20px;
 }
 
