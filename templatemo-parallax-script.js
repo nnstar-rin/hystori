@@ -36,123 +36,148 @@
     // ==============================
     // RECIPE DATA
     // ==============================
-    var recipes = {
+var recipes = {
 
-        geprek: {
-            title: "Ayam Geprek",
-            body: `
-                <h3>🍗 Bahan:</h3>
-                <ul>
-                    <li>Ayam crispy</li>
-                    <li>Cabai rawit</li>
-                    <li>Bawang putih</li>
-                    <li>Garam</li>
-                </ul>
+    geprek: {
+        title: "Ayam Geprek",
+        body: `
+            <h3>🍗 Bahan:</h3>
+            <ul>
+                <li>1 potong ayam</li>
+                <li>Tepung crispy</li>
+                <li>Cabai rawit</li>
+                <li>Bawang putih</li>
+                <li>Garam</li>
+            </ul>
 
-                <h3>🔥 Cara:</h3>
-                <ul>
-                    <li>Goreng ayam sampai crispy</li>
-                    <li>Ulek sambal</li>
-                    <li>Geprek ayam di atas sambal</li>
-                </ul>
-            `
-        },
+            <h3>🔥 Cara Membuat:</h3>
+            <ul>
+                <li>Balur ayam dengan tepung, goreng sampai crispy</li>
+                <li>Ulek cabai + bawang + garam</li>
+                <li>Geprek ayam di atas sambal</li>
+                <li>Sajikan dengan nasi hangat</li>
+            </ul>
+        `
+    },
 
-        seblak: {
-            title: "Seblak",
-            body: `
-                <h3>🌶️ Bahan:</h3>
-                <ul>
-                    <li>Kerupuk</li>
-                    <li>Telur</li>
-                    <li>Sosis</li>
-                    <li>Cabai</li>
-                    <li>Kencur</li>
-                </ul>
+    seblak: {
+        title: "Seblak Pedas",
+        body: `
+            <h3>🌶️ Bahan:</h3>
+            <ul>
+                <li>Kerupuk</li>
+                <li>Telur</li>
+                <li>Sosis / bakso</li>
+                <li>Cabai rawit</li>
+                <li>Bawang putih</li>
+                <li>Kencur (biar khas)</li>
+            </ul>
 
-                <h3>🔥 Cara:</h3>
-                <ul>
-                    <li>Rendam kerupuk</li>
-                    <li>Tumis bumbu</li>
-                    <li>Masukkan semua bahan</li>
-                </ul>
-            `
-        },
+            <h3>🔥 Cara Membuat:</h3>
+            <ul>
+                <li>Rendam kerupuk sampai lembek</li>
+                <li>Tumis bumbu halus sampai harum</li>
+                <li>Masukkan telur & topping</li>
+                <li>Tambahkan kerupuk & air sedikit</li>
+                <li>Masak sampai meresap</li>
+            </ul>
+        `
+    },
 
-        nasi: {
-            title: "Nasi Goreng",
-            body: `
-                <h3>🍚 Bahan:</h3>
-                <ul>
-                    <li>Nasi putih</li>
-                    <li>Telur</li>
-                    <li>Bawang putih</li>
-                    <li>Kecap manis</li>
-                </ul>
+    nasi: {
+        title: "Nasi Goreng",
+        body: `
+            <h3>🍚 Bahan:</h3>
+            <ul>
+                <li>Nasi putih (dingin lebih enak)</li>
+                <li>2 siung bawang putih</li>
+                <li>1 telur</li>
+                <li>Kecap manis</li>
+                <li>Garam & merica</li>
+            </ul>
 
-                <h3>🔥 Cara:</h3>
-                <ul>
-                    <li>Tumis bawang</li>
-                    <li>Masukkan telur</li>
-                    <li>Masukkan nasi & kecap</li>
-                </ul>
-            `
-        },
+            <h3>🔥 Cara Membuat:</h3>
+            <ul>
+                <li>Tumis bawang sampai harum</li>
+                <li>Masukkan telur, orak-arik</li>
+                <li>Masukkan nasi</li>
+                <li>Tambahkan kecap & bumbu</li>
+                <li>Aduk rata sampai matang</li>
+            </ul>
+        `
+    },
 
-        tiramisu: {
-            title: "Tiramisu",
-            body: `
-                <h3>🍰 Bahan:</h3>
-                <ul>
-                    <li>Ladyfinger</li>
-                    <li>Kopi</li>
-                    <li>Whipping cream</li>
-                    <li>Mascarpone</li>
-                </ul>
+    tiramisu: {
+        title: "Tiramisu Dessert",
+        body: `
+            <h3>🍰 Bahan:</h3>
+            <ul>
+                <li>Ladyfinger / biskuit</li>
+                <li>Kopi hitam dingin</li>
+                <li>Mascarpone / cream cheese</li>
+                <li>Whipping cream</li>
+                <li>Cocoa powder</li>
+                <li>Gula halus</li>
+            </ul>
 
-                <h3>✨ Cara:</h3>
-                <ul>
-                    <li>Layer biskuit & cream</li>
-                    <li>Dinginkan 3 jam</li>
-                </ul>
-            `
-        },
+            <h3>✨ Cara Membuat:</h3>
+            <ul>
+                <li>Kocok whipping cream sampai mengembang</li>
+                <li>Campur dengan mascarpone</li>
+                <li>Celup biskuit ke kopi sebentar</li>
+                <li>Susun layer: biskuit → cream → ulangi</li>
+                <li>Taburi cocoa powder</li>
+                <li>Dinginkan 3–4 jam</li>
+            </ul>
+        `
+    },
 
-        pancake: {
-            title: "Pancake",
-            body: `
-                <h3>🥞 Bahan:</h3>
-                <ul>
-                    <li>Tepung</li>
-                    <li>Telur</li>
-                    <li>Susu</li>
-                    <li>Gula</li>
-                </ul>
+    pancake: {
+        title: "Pancake",
+        body: `
+            <h3>🥞 Bahan:</h3>
+            <ul>
+                <li>Tepung terigu</li>
+                <li>Telur</li>
+                <li>Susu cair</li>
+                <li>Gula</li>
+                <li>Mentega</li>
+            </ul>
 
-                <h3>🔥 Cara:</h3>
-                <ul>
-                    <li>Campur adonan</li>
-                    <li>Masak di teflon</li>
-                </ul>
-            `
-        },
+            <h3>🔥 Cara Membuat:</h3>
+            <ul>
+                <li>Campur semua bahan sampai halus</li>
+                <li>Panaskan teflon</li>
+                <li>Tuang adonan</li>
+                <li>Masak sampai muncul gelembung</li>
+                <li>Balik dan masak sampai matang</li>
+                <li>Sajikan dengan topping</li>
+            </ul>
+        `
+    },
 
-        dalgona: {
-            title: "Dalgona Coffee",
-            body: `
-                <h3>☕ Bahan:</h3>
-                <ul>
-                    <li>Kopi instan</li>
-                    <li>Gula</li>
-                    <li>Air panas</li>
-                    <li>Susu</li>
-                </ul>
+    dalgona: {
+        title: "Dalgona Coffee",
+        body: `
+            <h3>☕ Bahan:</h3>
+            <ul>
+                <li>2 sdm kopi instan</li>
+                <li>2 sdm gula</li>
+                <li>2 sdm air panas</li>
+                <li>Susu dingin</li>
+            </ul>
 
-                <h3>✨ Cara:</h3>
-                <ul>
-                    <li>Kocok sampai foam</li>
-                    <li>Tuang di atas susu</li>
-                </ul>
+            <h3>✨ Cara Membuat:</h3>
+            <ul>
+                <li>Kocok kopi + gula + air sampai creamy</li>
+                <li>Siapkan susu di gelas</li>
+                <li>Tuang foam kopi di atas susu</li>
+                <li>Aduk sebelum diminum</li>
+            </ul>
+        `
+    }
+
+};
             `
         }
 
