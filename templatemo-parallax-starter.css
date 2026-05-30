@@ -242,8 +242,9 @@ img {
 .unsplash-credit {
     font-size: 14px;
     color: var(--white-40);
-    margin-top: 25px;
     letter-spacing: 1px;
+    margin-top: auto;
+    padding-bottom: 20px;
 }
 
 .unsplash-credit a {
