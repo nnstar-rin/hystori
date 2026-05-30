@@ -1,14 +1,16 @@
 (function () {
     'use strict';
 
-    // =========================
-    // NAV (tetap punyamu)
-    // =========================
+    // ==============================
+    // NAV + PARALLAX (PUNYAMU TETAP)
+    // ==============================
     var nav = document.getElementById('templatemo-nav');
     var navToggle = document.getElementById('navToggle');
     var navLinks = document.getElementById('navLinks');
     var navItems = document.querySelectorAll('.nav-links a');
+    var sections = document.querySelectorAll('.parallax-section');
 
+    // NAV SCROLL
     function handleNavScroll() {
         if (window.scrollY > 80) {
             nav.classList.add('scrolled');
@@ -18,6 +20,7 @@
     }
     window.addEventListener('scroll', handleNavScroll);
 
+    // MOBILE MENU
     navToggle.addEventListener('click', function () {
         navToggle.classList.toggle('active');
         navLinks.classList.toggle('open');
@@ -30,9 +33,9 @@
         });
     });
 
-    // =========================
-    // DATA RESEP
-    // =========================
+    // ==============================
+    // RECIPE DATA
+    // ==============================
     var recipes = {
 
         geprek: {
@@ -63,6 +66,7 @@
                     <li>Kerupuk</li>
                     <li>Telur</li>
                     <li>Sosis</li>
+                    <li>Cabai</li>
                     <li>Kencur</li>
                 </ul>
 
@@ -70,7 +74,7 @@
                 <ul>
                     <li>Rendam kerupuk</li>
                     <li>Tumis bumbu</li>
-                    <li>Masak semua bahan</li>
+                    <li>Masukkan semua bahan</li>
                 </ul>
             `
         },
@@ -80,17 +84,17 @@
             body: `
                 <h3>🍚 Bahan:</h3>
                 <ul>
-                    <li>Nasi</li>
+                    <li>Nasi putih</li>
                     <li>Telur</li>
                     <li>Bawang putih</li>
-                    <li>Kecap</li>
+                    <li>Kecap manis</li>
                 </ul>
 
                 <h3>🔥 Cara:</h3>
                 <ul>
                     <li>Tumis bawang</li>
                     <li>Masukkan telur</li>
-                    <li>Masukkan nasi + kecap</li>
+                    <li>Masukkan nasi & kecap</li>
                 </ul>
             `
         },
@@ -151,20 +155,50 @@
                 </ul>
             `
         }
+
     };
 
-    // =========================
-    // MODAL SYSTEM (FIXED)
-    // =========================
+    // ==============================
+    // POPUP MODAL
+    // ==============================
 
     function createModal() {
         var modal = document.createElement('div');
-        modal.className = "modal";
         modal.id = "recipeModal";
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        `;
 
         modal.innerHTML = `
-            <div class="modal-box">
-                <button class="modal-close" id="closeModal">✖</button>
+            <div style="
+                background: #111;
+                padding: 25px;
+                max-width: 500px;
+                width: 90%;
+                border-radius: 10px;
+                color: white;
+                position: relative;
+            ">
+                <button id="closeModal" style="
+                    position:absolute;
+                    top:10px;
+                    right:10px;
+                    background:none;
+                    border:none;
+                    color:white;
+                    font-size:20px;
+                    cursor:pointer;
+                ">✖</button>
+
                 <h2 id="modalTitle"></h2>
                 <div id="modalBody"></div>
             </div>
@@ -173,12 +207,12 @@
         document.body.appendChild(modal);
 
         document.getElementById('closeModal').onclick = function () {
-            modal.classList.remove("show");
+            modal.style.display = "none";
         };
 
         modal.addEventListener('click', function (e) {
             if (e.target === modal) {
-                modal.classList.remove("show");
+                modal.style.display = "none";
             }
         });
 
@@ -187,6 +221,9 @@
 
     var modal = createModal();
 
+    // ==============================
+    // OPEN RECIPE (GLOBAL)
+    // ==============================
     window.openRecipe = function (key) {
         var data = recipes[key];
         if (!data) return;
@@ -194,7 +231,8 @@
         document.getElementById('modalTitle').innerHTML = data.title;
         document.getElementById('modalBody').innerHTML = data.body;
 
-        modal.classList.add("show");
+        modal.style.display = "flex";
     };
 
+})();
 })();
