@@ -283,11 +283,11 @@ function openRecipe(type) {
 
                 <p>👩‍🍳 <b>Cara membuat:</b></p>
                 <ol>
-                    <li>Celup biskuit</li>
+                    <li>Celup biskuit di kopi</li>
                     <li>Susun layer</li>
-                    <li>Tambah cream</li>
+                    <li>Tambah cream & keju</li>
                     <li>Ulangi</li>
-                    <li>Tabur coklat 🍫</li>
+                    <li>Tabur bubuk kopi</li>
                 </ol>
 
                 <p>💡 Dinginkan dulu!</p>
@@ -307,8 +307,8 @@ function openRecipe(type) {
                 <p>👩‍🍳 <b>Cara membuat:</b></p>
                 <ol>
                     <li>Campur adonan</li>
-                    <li>Masak teflon</li>
-                    <li>Balik saat matang</li>
+                    <li>Masak di teflon</li>
+                    <li>Balik sampai matang</li>
                     <li>Tambahkan topping 🍯</li>
                 </ol>
 
@@ -329,7 +329,7 @@ function openRecipe(type) {
 
                 <p>👩‍🍳 <b>Cara membuat:</b></p>
                 <ol>
-                    <li>Kocok kopi + gula</li>
+                    <li>Kocok kopi, gula, & air panas</li>
                     <li>Sampai foam</li>
                     <li>Tuang susu</li>
                     <li>Taruh foam ☕</li>
