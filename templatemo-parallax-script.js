@@ -75,7 +75,7 @@ https://templatemo.com/tm-612-parallax-starter
 
             // The maximum pixel displacement — large value for visible effect
             // speed=0.5 means the bg can travel up to 50% of the viewport height
-            var maxShift = windowHeight * speed;
+            var maxShift = windowHeight * speed * 0.25;
 
             // Apply translation — bg moves in the SAME direction as the offset
             // which means it moves SLOWER than the scroll (parallax lag)
