@@ -725,6 +725,7 @@ img {
 }
 
 .image-credit {
+    widht: 100%;
     margin-top: 80px;
     text-align: center;
     font-size: 12px;
