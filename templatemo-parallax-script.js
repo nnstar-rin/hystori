@@ -184,7 +184,7 @@ https://templatemo.com/tm-612-parallax-starter
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
+            alert('Terima kasih atas usulannya! Akan segera kami proses. 💌✨🍳');
             contactForm.reset();
         });
     }
