@@ -720,11 +720,22 @@ img {
     overflow: hidden;
 }
 
-/* bikin iframe full mengikuti wrapper */
 .video-wrap iframe,
 .map-wrap iframe {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
+}
+
+.mood-grid {
+    align-items: start;
+}
+
+.mood-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: fit-content;
+    align-self: start;
 }
