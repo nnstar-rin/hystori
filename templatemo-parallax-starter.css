@@ -527,6 +527,80 @@ img {
     color: black;
 }
 
+.recipe-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.recipe-modal-content {
+    background: rgba(0,0,0,0.9);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    color: white;
+    border-radius: 12px;
+    font-family: var(--font-body);
+}
+
+.recipe-modal-content h2 {
+    font-family: var(--font-heading);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+}
+
+.close-btn {
+    float: right;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.mood-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    align-items: start;
+}
+
+.mood-box {
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 20px;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    height: auto;
+    align-self: start;
+}
+
+.video-wrap,
+.map-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: black;
+}
+
+.video-wrap iframe,
+.map-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
 /* ===================================
    Responsive
    =================================== */
@@ -665,91 +739,9 @@ img {
     }
 }
 
-.recipe-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-}
-
-.recipe-modal-content {
-    background: rgba(0,0,0,0.9);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 30px;
-    width: 90%;
-    max-width: 500px;
-    color: white;
-    border-radius: 12px;
-    font-family: var(--font-body);
-}
-
-.recipe-modal-content h2 {
-    font-family: var(--font-heading);
-    margin-bottom: 15px;
-    letter-spacing: 3px;
-}
-
-.close-btn {
-    float: right;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-.mood-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    align-items: start;
-}
-
-.mood-box {
-    background: rgba(0,0,0,0.45);
-    border: 1px solid rgba(255,255,255,0.15);
-    padding: 20px;
-    border-radius: 12px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    height: auto;
-    align-self: start;
-}
-
-.video-wrap,
-.map-wrap {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border-radius: 12px;
-    overflow: hidden;
-    background: black;
-}
-
-.video-wrap iframe,
-.map-wrap iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
-}
-
-.image-credit {
-    width: 100%;
-    margin-top: 80px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.15);
-
-    font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: 300;
-    letter-spacing: 0.5px;
-
-    color: rgba(255,255,255,0.65);
-    text-align: center;
+@media (max-width: 768px) {
+    .mood-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
 }
