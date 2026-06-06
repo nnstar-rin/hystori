@@ -509,7 +509,7 @@ img {
 
 .recipe-card p {
     font-size: 14px;
-    color: var(--white-80);
+    color: var(--white-70);
     margin-bottom: 15px;
 }
 
@@ -549,6 +549,9 @@ img {
     color: white;
     border-radius: 12px;
     font-family: var(--font-body);
+
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .recipe-modal-content h2 {
