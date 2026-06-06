@@ -196,149 +196,150 @@ function openRecipe(type) {
     const title = document.getElementById("recipeTitle");
     const content = document.getElementById("recipeContent");
 
-    let data = {
-        geprek: {
-            title: "🍗 Ayam Geprek Pedas",
-            content: `
-                <p>🔥 <b>Bahan:</b></p>
-                <ul>
-                    <li>1 potong ayam</li>
-                    <li>3 sdm tepung bumbu</li>
-                    <li>3 siung bawang putih</li>
-                    <li>Cabai rawit 🌶️</li>
-                    <li>Garam & lada</li>
-                </ul>
+let data = {
+    kare: {
+        title: "🍛 Kare Ayam Gurih",
+        content: `
+            <p>🥕 <b>Bahan:</b></p>
+            <ul>
+                <li>600 g ayam 🍗</li>
+                <li>Wortel & buncis</li>
+                <li>4 telur rebus 🥚</li>
+                <li>Serai, daun salam & daun jeruk 🌿</li>
+                <li>Bumbu halus secukupnya</li>
+            </ul>
 
-                <p>👩‍🍳 <b>Cara membuat:</b></p>
-                <ol>
-                    <li>Marinasi ayam</li>
-                    <li>Balur tepung</li>
-                    <li>Goreng crispy 🍗</li>
-                    <li>Ulek cabai + bawang</li>
-                    <li>Geprek ayam di atas sambal 🔥</li>
-                </ol>
+            <p>👩‍🍳 <b>Cara membuat:</b></p>
+            <ol>
+                <li>Rebus ayam hingga empuk 🍗</li>
+                <li>Tumis bumbu sampai harum</li>
+                <li>Masukkan sayur & rempah 🌿</li>
+                <li>Beri bumbu, lalu masukkan telur 🥚</li>
+                <li>Masak hingga matang ✨</li>
+            </ol>
 
-                <p>💡 Nasi hangat = wajib!</p>
-            `
-        },
+            <p>💡 Nikmat disantap hangat!</p>
+        `
+    },
 
-        seblak: {
-            title: "🍜 Seblak Pedas Bandung",
-            content: `
-                <p>🔥 <b>Bahan:</b></p>
-                <ul>
-                    <li>Kerupuk</li>
-                    <li>2 telur 🥚</li>
-                    <li>Kencur</li>
-                    <li>Cabai 🌶️</li>
-                </ul>
+    tomyam: {
+        title: "🍲 Kuah Tomyam Segar",
+        content: `
+            <p>🌶️ <b>Bahan:</b></p>
+            <ul>
+                <li>Cabai, bawang merah & putih</li>
+                <li>100 g udang 🦐</li>
+                <li>Kaldu udang</li>
+                <li>Serai, lengkuas & daun jeruk 🌿</li>
+                <li>Jeruk nipis 🍋</li>
+            </ul>
 
-                <p>👩‍🍳 <b>Cara membuat:</b></p>
-                <ol>
-                    <li>Rendam kerupuk</li>
-                    <li>Haluskan bumbu</li>
-                    <li>Tumis sampai harum</li>
-                    <li>Masukkan telur</li>
-                    <li>Campur semua bahan</li>
-                </ol>
+            <p>👩‍🍳 <b>Cara membuat:</b></p>
+            <ol>
+                <li>Haluskan bumbu 🌶️</li>
+                <li>Masak bersama rempah 🌿</li>
+                <li>Masukkan udang & kaldu 🦐</li>
+                <li>Tambahkan jeruk nipis 🍋</li>
+                <li>Masak hingga mendidih ✨</li>
+            </ol>
 
-                <p>💡 Kencur bikin khas!</p>
-            `
-        },
+            <p>💡 Rasanya segar dan pedas!</p>
+        `
+    },
 
-        nasi: {
-            title: "🍛 Nasi Goreng Rumahan",
-            content: `
-                <p>🔥 <b>Bahan:</b></p>
-                <ul>
-                    <li>Nasi putih</li>
-                    <li>Telur 🥚</li>
-                    <li>Kecap manis</li>
-                    <li>Ayam / sosis</li>
-                </ul>
+    orakarik: {
+        title: "🥚 Orak-Arik Telur Labu Siam",
+        content: `
+            <p>🥒 <b>Bahan:</b></p>
+            <ul>
+                <li>200 g labu siam</li>
+                <li>2 telur 🥚</li>
+                <li>Bawang putih</li>
+                <li>Daun bawang 🌿</li>
+            </ul>
 
-                <p>👩‍🍳 <b>Cara membuat:</b></p>
-                <ol>
-                    <li>Tumis bawang</li>
-                    <li>Masukkan telur</li>
-                    <li>Masukkan ayam</li>
-                    <li>Masukkan nasi</li>
-                    <li>Tambahkan kecap 🍳</li>
-                </ol>
+            <p>👩‍🍳 <b>Cara membuat:</b></p>
+            <ol>
+                <li>Tumis bawang hingga harum ✨</li>
+                <li>Masukkan labu siam 🥒</li>
+                <li>Bumbui secukupnya</li>
+                <li>Masukkan telur lalu orak-arik 🥚</li>
+                <li>Tambahkan daun bawang 🌿</li>
+            </ol>
 
-                <p>💡 Pakai nasi dingin!</p>
-            `
-        },
+            <p>💡 Cocok untuk menu sehari-hari!</p>
+        `
+    },
 
-        tiramisu: {
-            title: "🍰 Tiramisu Dessert",
-            content: `
-                <p>🔥 <b>Bahan:</b></p>
-                <ul>
-                    <li>Biskuit</li>
-                    <li>Kopi ☕</li>
-                    <li>Whipped cream</li>
-                    <li>Keju</li>
-                </ul>
+    rolade: {
+        title: "🐟 Rolade Ikan Gabus",
+        content: `
+            <p>🌟 <b>Bahan:</b></p>
+            <ul>
+                <li>1 kg ikan gabus giling 🐟</li>
+                <li>Putih telur 🥚</li>
+                <li>Wortel parut 🥕</li>
+                <li>Daun bawang 🌿</li>
+                <li>Telur dadar tipis</li>
+            </ul>
 
-                <p>👩‍🍳 <b>Cara membuat:</b></p>
-                <ol>
-                    <li>Celup biskuit di kopi</li>
-                    <li>Susun layer</li>
-                    <li>Tambah cream & keju</li>
-                    <li>Ulangi</li>
-                    <li>Tabur bubuk kopi</li>
-                </ol>
+            <p>👩‍🍳 <b>Cara membuat:</b></p>
+            <ol>
+                <li>Campur semua bahan isian 🥣</li>
+                <li>Letakkan di atas telur dadar</li>
+                <li>Gulung dan bungkus 🌯</li>
+                <li>Kukus ±30 menit ♨️</li>
+            </ol>
 
-                <p>💡 Dinginkan dulu!</p>
-            `
-        },
+            <p>💡 Enak jadi lauk sehat!</p>
+        `
+    },
 
-        pancake: {
-            title: "🥞 Pancake Lembut",
-            content: `
-                <p>🔥 <b>Bahan:</b></p>
-                <ul>
-                    <li>Tepung</li>
-                    <li>Telur 🥚</li>
-                    <li>Susu 🥛</li>
-                </ul>
+    bolayam: {
+        title: "🍗 Bola-Bola Ayam",
+        content: `
+            <p>✨ <b>Bahan:</b></p>
+            <ul>
+                <li>500 g ayam giling 🍗</li>
+                <li>Putih telur 🥚</li>
+                <li>Bawang putih</li>
+                <li>Tepung oatmeal 🌾</li>
+            </ul>
 
-                <p>👩‍🍳 <b>Cara membuat:</b></p>
-                <ol>
-                    <li>Campur adonan</li>
-                    <li>Masak di teflon</li>
-                    <li>Balik sampai matang</li>
-                    <li>Tambahkan topping 🍯</li>
-                </ol>
+            <p>👩‍🍳 <b>Cara membuat:</b></p>
+            <ol>
+                <li>Campur semua bahan 🥣</li>
+                <li>Bentuk bulat-bulat ⚪</li>
+                <li>Rebus hingga matang ♨️</li>
+            </ol>
 
-                <p>💡 Api kecil ya!</p>
-            `
-        },
+            <p>💡 Bisa untuk camilan atau lauk!</p>
+        `
+    },
 
-        dalgona: {
-            title: "☕ Dalgona Coffee",
-            content: `
-                <p>🔥 <b>Bahan:</b></p>
-                <ul>
-                    <li>Kopi instan</li>
-                    <li>Gula</li>
-                    <li>Air panas</li>
-                    <li>Susu 🥛</li>
-                </ul>
+    omelette: {
+        title: "🥔 Potato Omelette",
+        content: `
+            <p>🥔 <b>Bahan:</b></p>
+            <ul>
+                <li>150 g kentang</li>
+                <li>2 telur + 2 putih telur 🥚</li>
+                <li>Bawang bombay 🧅</li>
+                <li>Garam & lada</li>
+            </ul>
 
-                <p>👩‍🍳 <b>Cara membuat:</b></p>
-                <ol>
-                    <li>Kocok kopi, gula, & air panas</li>
-                    <li>Sampai foam</li>
-                    <li>Tuang susu</li>
-                    <li>Taruh foam ☕</li>
-                </ol>
+            <p>👩‍🍳 <b>Cara membuat:</b></p>
+            <ol>
+                <li>Kukus kentang hingga empuk 🥔</li>
+                <li>Tumis bawang bombay 🧅</li>
+                <li>Campur dengan telur 🥚</li>
+                <li>Masak di wajan anti lengket 🍳</li>
+            </ol>
 
-                <p>💡 Semakin lama dikocok makin fluffy!</p>
-            `
-        }
-    };
+            <p>💡 Paling enak saat masih hangat!</p>
+        `
+    }
+};
 
     title.innerHTML = data[type].title;
     content.innerHTML = data[type].content;
